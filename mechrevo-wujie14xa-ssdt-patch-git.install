@@ -1,0 +1,15 @@
+post_install() {
+	echo 'Installed Mechrevo Wujie 14x ACPI SSDT overrides for mkinitcpio.'
+	echo 'The package enables the mkinitcpio acpi_override hook via /etc/mkinitcpio.conf.d/.'
+	echo 'The mkinitcpio pacman hook will rebuild initramfs after this transaction.'
+}
+
+post_upgrade() {
+	echo 'Updated Mechrevo Wujie 14x ACPI SSDT overrides.'
+	echo 'The mkinitcpio pacman hook will rebuild initramfs after this transaction.'
+}
+
+post_remove() {
+	echo 'Removed Mechrevo Wujie 14x ACPI SSDT overrides.'
+	echo 'The mkinitcpio pacman hook will rebuild initramfs after this transaction.'
+}

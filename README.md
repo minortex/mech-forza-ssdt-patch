@@ -25,7 +25,7 @@
 
 ## 构建
 
-需要安装 `iasl`。在仓库根目录执行：
+需要安装 `iasl`。在 Arch 上该命令由 `acpica` 包提供。在仓库根目录执行：
 
 ```sh
 make
@@ -39,7 +39,22 @@ make
 make clean
 ```
 
-## 部署
+## Arch 包安装
+
+仓库提供 `PKGBUILD`，用于从远程 Git 仓库拉取源码、编译 AML，并通过 mkinitcpio 的 `acpi_override` hook 把表放进 early initramfs：
+
+```sh
+makepkg -si
+```
+
+包依赖关系：
+
+- `makedepends`: `git`、`acpica`（提供 `iasl`）
+- `depends`: `mkinitcpio`
+
+该方式不依赖 GRUB。只要启动器加载 mkinitcpio 生成的 initramfs，就适用于 GRUB、gummiboot/systemd-boot、EFISTUB 等启动方式。安装、升级和删除包时，由 mkinitcpio 自带的 pacman hook 在事务末尾统一重建 initramfs。
+
+## 手动 GRUB 部署
 
 1. 编译后把 `aml/ssdt-bix.aml` 和 `aml/ssdt-battery-temp.aml` 复制到 `/boot/acpi/`。
 2. 把 `grub/01_acpi_bix` 安装为 `/etc/grub.d/01_acpi_bix`，并保留可执行权限。

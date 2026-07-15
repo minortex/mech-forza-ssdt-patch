@@ -1,2 +1,7 @@
 /aml/*.aml
 /hex/*.hex
+/build/
+/pkg/
+/src/
+/*.pkg.tar.*
+/*.src.tar.*
