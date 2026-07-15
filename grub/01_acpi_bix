@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cat <<'EOF'
+### BEGIN /etc/grub.d/01_acpi_bix ###
+insmod acpi
+acpi /@/boot/acpi/ssdt-bix.aml
+### END /etc/grub.d/01_acpi_bix ###
+EOF
