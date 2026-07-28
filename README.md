@@ -11,7 +11,6 @@
 
 ## 目录结构
 
-- `origin_dsl/`：从机器固件导出的原始 DSDT/SSDT ASL 反编译结果，用于追溯命名空间和方法实现。
 - `dsl/`：手写 SSDT override 源码。
 - `grub/`：用于在启动时加载 AML 的 GRUB 片段。
 - `docs/`：EC 寄存器和逆向结论说明。

@@ -1,19 +1,19 @@
 # Maintainer: minortex
 
-pkgname=mechrevo-wujie14xa-ssdt-patch-git
-_pkgname=mechrevo-wujie14xa-ssdt-patch
+pkgname=mech-forza-ssdt-patch-git
+_pkgname=mech-forza-ssdt-patch
 pkgver=r4.g598fab4
 pkgrel=1
 pkgdesc='ACPI SSDT overrides for Mechrevo Wujie 14x battery cycle count and temperature'
 arch=('any')
-url='https://github.com/minortex/mechrevo-wujie14xa-ssdt-patch'
+url='https://github.com/minortex/mech-forza-ssdt-patch'
 license=('custom')
 depends=('mkinitcpio')
 makedepends=('git' 'acpica')
 install="${pkgname}.install"
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
-backup=('etc/mkinitcpio.conf.d/mechrevo-wujie14xa-ssdt-patch.conf')
+backup=('etc/mkinitcpio.conf.d/mech-forza-ssdt-patch.conf')
 source=("git+ssh://git@github.com/minortex/${_pkgname}.git")
 sha256sums=('SKIP')
 
@@ -31,7 +31,7 @@ package() {
   cd "${srcdir}/${_pkgname}"
 
   install -Dm644 aml/ssdt-bix.aml "${pkgdir}/usr/lib/initcpio/acpi_override/ssdt-bix.aml"
-  install -Dm644 /dev/stdin "${pkgdir}/etc/mkinitcpio.conf.d/mechrevo-wujie14xa-ssdt-patch.conf" <<'EOF'
+  install -Dm644 /dev/stdin "${pkgdir}/etc/mkinitcpio.conf.d/mech-forza-ssdt-patch.conf" <<'EOF'
 # Include the packaged Mechrevo Wujie 14x ACPI table overrides in the early initramfs.
 if [[ ${HOOKS@a} == *a* ]]; then
 	case " ${HOOKS[*]} " in
