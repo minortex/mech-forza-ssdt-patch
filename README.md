@@ -1,11 +1,10 @@
-# Mechrevo Wujie 14x ACPI SSDT Patch
+# Mech-Forza ACPI SSDT Patch
 
-本仓库保存机械革命无界 14x / Forza 系列 AMD 平台的本机 ACPI 表备份，以及用于补充电池信息上报的 SSDT override。
+本仓库是机械革命无界 14xa 用于补充电池信息上报的 SSDT override。
 
 当前补丁解决两类固件未标准暴露的数据：
 
 - 电池循环次数：给 `\_SB.BAT0` 补充 `_BIX`，从 EC `0x04A6..0x04A7` 读取 cycle count。
-- 电池温度：新增 `\_TZ.BATZ` thermal zone，从 EC `0x04A2..0x04A3` 读取 0.1 K 单位的温度。
 
 这些 SSDT 依赖本机固件中的 `\_SB.BAT0`、`\_SB.INOU.ECRR` 和 EC 命名空间，只适用于同一套 ACPI 表或高度相近的机型。移植到其他机器前需要先核对 DSDT/SSDT 命名空间和 EC 寄存器定义。
 
