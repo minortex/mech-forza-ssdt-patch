@@ -45,12 +45,21 @@ make clean
 makepkg -si
 ```
 
+包会安装两个 ACPI override：电池 `_BIX` 表和修复 `SSDT25` 命名空间错误的 `ACDCFIX` 表。
+
 包依赖关系：
 
 - `makedepends`: `git`、`acpica`（提供 `iasl`）
 - `depends`: `mkinitcpio`
 
 该方式不依赖 GRUB。只要启动器加载 mkinitcpio 生成的 initramfs，就适用于 GRUB、gummiboot/systemd-boot、EFISTUB 等启动方式。安装、升级和删除包时，由 mkinitcpio 自带的 pacman hook 在事务末尾统一重建 initramfs。
+
+安装后检查：
+
+```sh
+pacman -Ql mech-forza-ssdt-patch-git | grep acpi_override
+grep -E 'acpi_override' /etc/mkinitcpio.conf.d/mech-forza-ssdt-patch.conf
+```
 
 ## 手动 GRUB 部署
 

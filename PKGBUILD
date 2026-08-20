@@ -3,8 +3,8 @@
 pkgname=mech-forza-ssdt-patch-git
 _pkgname=mech-forza-ssdt-patch
 pkgver=r4.g598fab4
-pkgrel=1
-pkgdesc='ACPI SSDT overrides for Mechrevo Wujie 14x battery cycle count and temperature'
+pkgrel=2
+pkgdesc='ACPI and I2C-HID suspend/resume fixes for Mechrevo Wujie 14x'
 arch=('any')
 url='https://github.com/minortex/mech-forza-ssdt-patch'
 license=('custom')
@@ -31,6 +31,7 @@ package() {
   cd "${srcdir}/${_pkgname}"
 
   install -Dm644 aml/ssdt-bix.aml "${pkgdir}/usr/lib/initcpio/acpi_override/ssdt-bix.aml"
+  install -Dm644 aml/ssdt-acdc.aml "${pkgdir}/usr/lib/initcpio/acpi_override/ssdt-acdc.aml"
   install -Dm644 /dev/stdin "${pkgdir}/etc/mkinitcpio.conf.d/mech-forza-ssdt-patch.conf" <<'EOF'
 # Include the packaged Mechrevo Wujie 14x ACPI table overrides in the early initramfs.
 if [[ ${HOOKS@a} == *a* ]]; then

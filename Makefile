@@ -1,4 +1,4 @@
-TABLES := ssdt-bix
+TABLES := ssdt-bix ssdt-acdc
 
 .PHONY: all clean
 
